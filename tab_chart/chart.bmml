@@ -282,7 +282,7 @@
         <tooltipDirection>SE</tooltipDirection>
       </controlProperties>
     </control>
-    <control controlID="37" controlTypeID="com.balsamiq.mockups::Tooltip" x="1113" y="241" w="286" h="99" measuredW="516" measuredH="99" zOrder="35" locked="false" isInGroup="-1">
+    <control controlID="37" controlTypeID="com.balsamiq.mockups::Tooltip" x="1113" y="241" w="286" h="138" measuredW="516" measuredH="99" zOrder="35" locked="false" isInGroup="-1">
       <controlProperties>
         <size>28</size>
         <text>2.%20OK%20then%20I%27ll%20deactive%20without%20you%21</text>
