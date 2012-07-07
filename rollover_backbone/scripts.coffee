@@ -1,13 +1,15 @@
 # Rolloverクラス
-class Rollover
-  constructor: ($a) ->
-    @$a = $a
+class Rollover extends Backbone.View
+  events:
+    'mouseenter': 'toOver'
+    'mouseleave': 'toNormal'
+  initialize: ->
     @_prepareEls()
     @_prepareSrcs()
     @_preload()
-    @_eventify()
+    @
   _prepareEls: ->
-    @$img = @$a.find 'img'
+    @$img = @$('img')
     @
   _prepareSrcs: ->
     @_src_off = @$img.attr 'src'
@@ -15,12 +17,6 @@ class Rollover
     @
   _preload: ->
     $('<img />').attr 'src', @_src_on
-    @
-  _eventify: ->
-    @$a.hover =>
-      @toOver()
-    , =>
-      @toNormal()
     @
   toOver: ->
     @$img.attr 'src', @_src_on
@@ -32,4 +28,4 @@ class Rollover
 # 実行
 $ ->
   $('.rollover').each (i, anchor) ->
-    new Rollover $(anchor)
+    new Rollover { el: anchor }

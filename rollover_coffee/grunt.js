@@ -5,11 +5,6 @@
 module.exports = function(grunt){
 
   grunt.initConfig({
-    coffeelint: {
-      all: {
-        files: [ 'scripts.coffee' ]
-      }
-    },
     coffee: {
       all: {
         dir: './'
@@ -18,7 +13,7 @@ module.exports = function(grunt){
     watch: {
       all: {
         files: '*.coffee',
-        tasks: 'coffeelint:all coffee:all ok'
+        tasks: 'coffee:all ok'
       }
     }
   });
