@@ -66,9 +66,13 @@
       return TweetItemDiv.__super__.constructor.apply(this, arguments);
     }
 
+    TweetItemDiv.prototype.tagName = 'div';
+
+    TweetItemDiv.prototype.className = 'item';
+
     TweetItemDiv.prototype.render = function() {
       var compiled;
-      compiled = _.template("<div class=\"item\">\n  <a href=\"http://twitter.com/<%- from_user %>\"><%- from_user %></a>\n  <%- text %>\n</div>");
+      compiled = _.template("<a href=\"http://twitter.com/<%- from_user %>\">\n  <%- from_user %>\n</a>\n<%- text %>");
       this.$el.html(compiled(this.model.toJSON()));
       return this;
     };
@@ -98,17 +102,12 @@
     TweetsDiv.prototype.refresh = function() {
       var _this = this;
       tweets.each(function(tweet) {
-        return _this.addOne(tweet);
+        var view;
+        view = new TweetItemDiv({
+          model: tweet
+        });
+        return _this.$el.append(view.render().el);
       });
-      return this;
-    };
-
-    TweetsDiv.prototype.addOne = function(tweet) {
-      var view;
-      view = new TweetItemDiv({
-        model: tweet
-      });
-      this.$el.append(view.render().el);
       return this;
     };
 

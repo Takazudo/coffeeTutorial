@@ -33,12 +33,14 @@ tweets = new TweetList # インスタンス化
 # Twitter検索結果を表示するView
 
 class TweetItemDiv extends Backbone.View
+  tagName: 'div'
+  className: 'item'
   render: ->
     compiled = _.template """
-      <div class="item">
-        <a href="http://twitter.com/<%- from_user %>"><%- from_user %></a>
-        <%- text %>
-      </div>
+      <a href="http://twitter.com/<%- from_user %>">
+        <%- from_user %>
+      </a>
+      <%- text %>
     """
     @$el.html (compiled @model.toJSON())
     @
@@ -48,11 +50,9 @@ class TweetsDiv extends Backbone.View
     tweets.bind 'updatestart', => @$el.empty()
     tweets.bind 'updatesuccess', => @refresh()
   refresh: ->
-    tweets.each (tweet) => @addOne tweet
-    @
-  addOne: (tweet) ->
-    view = new TweetItemDiv { model: tweet }
-    @$el.append view.render().el
+    tweets.each (tweet) =>
+      view = new TweetItemDiv { model: tweet }
+      @$el.append view.render().el
     @
 
 #========================================================
