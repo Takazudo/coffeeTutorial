@@ -13,6 +13,7 @@ getTweets = (query) ->
         q: query
     .done (res) ->
       defer.resolve res.results
+  .promise()
 
 #========================================================
 # Twitter検索のModel／Collection

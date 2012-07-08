@@ -18,7 +18,7 @@
       }).done(function(res) {
         return defer.resolve(res.results);
       });
-    });
+    }).promise();
   };
 
   Tweet = (function(_super) {
