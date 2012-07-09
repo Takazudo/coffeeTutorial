@@ -48,8 +48,8 @@ class TweetItemDiv extends Backbone.View
 
 class TweetsDiv extends Backbone.View
   initialize: ->
-    tweets.bind 'updatestart', => @$el.empty()
-    tweets.bind 'updatesuccess', => @refresh()
+    tweets.on 'updatestart', => @$el.empty()
+    tweets.on 'updatesuccess', => @refresh()
   refresh: ->
     tweets.each (tweet) =>
       view = new TweetItemDiv { model: tweet }

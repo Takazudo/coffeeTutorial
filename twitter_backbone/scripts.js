@@ -91,10 +91,10 @@
 
     TweetsDiv.prototype.initialize = function() {
       var _this = this;
-      tweets.bind('updatestart', function() {
+      tweets.on('updatestart', function() {
         return _this.$el.empty();
       });
-      return tweets.bind('updatesuccess', function() {
+      return tweets.on('updatesuccess', function() {
         return _this.refresh();
       });
     };
