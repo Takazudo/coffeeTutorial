@@ -1,5 +1,11 @@
 # Rolloverクラス
 class Rollover
+
+  $a: null # a要素
+  $img: null # img要素
+  _src_off: null # 通常時のsrc
+  _src_on: null # オーバー時のsrc
+
   constructor: ($a) ->
     @$a = $a
     @_prepareEls()

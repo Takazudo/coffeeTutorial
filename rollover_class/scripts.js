@@ -4,6 +4,14 @@
 
   Rollover = (function() {
 
+    Rollover.prototype.$a = null;
+
+    Rollover.prototype.$img = null;
+
+    Rollover.prototype._src_off = null;
+
+    Rollover.prototype._src_on = null;
+
     function Rollover($a) {
       this.$a = $a;
       this._prepareEls();
@@ -53,8 +61,8 @@
   })();
 
   $(function() {
-    return $('.rollover').each(function(i, el) {
-      return new Rollover($(el));
+    return $('.rollover').each(function(i, anchor) {
+      return new Rollover($(anchor));
     });
   });
 
