@@ -1,5 +1,5 @@
 #========================================================
-# Twitter検索APIを呼ぶ
+# ブックマークのJSONを取得する関数
 
 getBookmarks = (type) ->
   $.Deferred (defer) ->
@@ -11,7 +11,7 @@ getBookmarks = (type) ->
   .promise()
 
 #========================================================
-# Twitter検索のModel／Collection
+# ブックマークののModel／Collection
 
 class Bookmark extends Backbone.Model
 
@@ -26,7 +26,7 @@ class BookmarkCollection extends Backbone.Collection
 bookmarks = new BookmarkCollection # インスタンス化
 
 #========================================================
-# Twitter検索結果を表示するView
+# ブックマークを表示するView
 
 class BookmarkItemView extends Backbone.View
   tagName: 'div'
