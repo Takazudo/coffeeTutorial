@@ -1,0 +1,19 @@
+{
+  "items": [
+    {
+      "title": "Scalable and Modular Architecture for CSS",
+      "url": "http://smacss.com/",
+      "description": "スケールできるCSSの書き方をまとめた書籍"
+    },
+    {
+      "title": "BEM. Block, Element, Modifier",
+      "url": "http://bem.info/",
+      "description": "Webアプリケーションを作るための設計概念／技術です"
+    },
+    {
+      "title": "Pure",
+      "url": "http://purecss.io/",
+      "description": "利用しやすい小さなフレームワークです"
+    }
+  ]
+}

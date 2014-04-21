@@ -1,58 +1,51 @@
 #========================================================
 # Twitter検索APIを呼ぶ
 
-getTweets = (query) ->
+getBookmarks = (type) ->
   $.Deferred (defer) ->
     $.ajax
-      url: 'http://search.twitter.com/search.json'
-      dataType: 'jsonp'
-      data:
-        result_type: 'recent'
-        rpp: 10
-        page: 1
-        q: query
+      url: "data/#{type}.json"
+      dataType: 'json'
     .done (res) ->
-      defer.resolve res.results
+      defer.resolve res.items
   .promise()
 
 #========================================================
 # Twitter検索のModel／Collection
 
-class Tweet extends Backbone.Model
+class Bookmark extends Backbone.Model
 
-class TweetList extends Backbone.Collection
-  model: Tweet
-  update: (query) ->
+class BookmarkCollection extends Backbone.Collection
+  model: Bookmark
+  update: (type) ->
     @trigger 'updatestart'
-    getTweets(query).done (tweets) =>
-      @reset(tweets)
+    getBookmarks(type).done (bookmarks) =>
+      @reset bookmarks
       @trigger 'updatesuccess'
 
-tweets = new TweetList # インスタンス化
+bookmarks = new BookmarkCollection # インスタンス化
 
 #========================================================
 # Twitter検索結果を表示するView
 
-class TweetItemDiv extends Backbone.View
+class BookmarkItemView extends Backbone.View
   tagName: 'div'
   className: 'item'
   render: ->
     compiled = _.template """
-      <a href="http://twitter.com/<%- from_user %>">
-        <%- from_user %>
-      </a>
-      <%- text %>
+      <a href="<%- url %>"><%- title %></a><br>
+      <%- description %>
     """
     @$el.html (compiled @model.toJSON())
     @
 
-class TweetsDiv extends Backbone.View
+class BookmarkView extends Backbone.View
   initialize: ->
-    tweets.on 'updatestart', => @$el.empty()
-    tweets.on 'updatesuccess', => @refresh()
+    bookmarks.on 'updatestart', => @$el.empty()
+    bookmarks.on 'updatesuccess', => @refresh()
   refresh: ->
-    tweets.each (tweet) =>
-      view = new TweetItemDiv { model: tweet }
+    bookmarks.each (tweet) =>
+      view = new BookmarkItemView { model: tweet }
       @$el.append view.render().el
     @
 
@@ -60,8 +53,8 @@ class TweetsDiv extends Backbone.View
 # 実行
 
 $ ->
-  tweetsDiv = new TweetsDiv { el: $('#tweets') }
-  $('.loadtweets').click ->
-    query = $(@).data 'query'
-    tweets.update query
+  bookmarkView = new BookmarkView { el: $('#bookmarks') }
+  $('.loadBookmarks').click ->
+    type = $(@).data 'type'
+    bookmarks.update type
 

@@ -1,0 +1,19 @@
+{
+  "items": [
+    {
+      "title": "jQuery",
+      "url": "http://jquery.com/",
+      "description": "DOM操作を中心に、様々な機能を持つライブラリです"
+    },
+    {
+      "title": "Underscore.js",
+      "url": "http://underscorejs.org/",
+      "description": "配列、オブジェクト操作等の機能を多数持つライブラリです"
+    },
+    {
+      "title": "Backbone.js",
+      "url": "http://documentcloud.github.io/backbone/",
+      "description": "Webアプリケーションの基板となる機能を持つライブラリです"
+    }
+  ]
+}
