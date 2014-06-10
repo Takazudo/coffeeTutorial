@@ -95,10 +95,10 @@
 
     BookmarkView.prototype.refresh = function() {
       bookmarks.each((function(_this) {
-        return function(tweet) {
+        return function(bookmark) {
           var view;
           view = new BookmarkItemView({
-            model: tweet
+            model: bookmark
           });
           return _this.$el.append(view.render().el);
         };

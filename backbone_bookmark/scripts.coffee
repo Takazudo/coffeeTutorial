@@ -44,8 +44,8 @@ class BookmarkView extends Backbone.View
     bookmarks.on 'updatestart', => @$el.empty()
     bookmarks.on 'updatesuccess', => @refresh()
   refresh: ->
-    bookmarks.each (tweet) =>
-      view = new BookmarkItemView { model: tweet }
+    bookmarks.each (bookmark) =>
+      view = new BookmarkItemView { model: bookmark }
       @$el.append view.render().el
     @
 
